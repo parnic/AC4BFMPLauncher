@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -141,6 +142,11 @@ namespace AC4BFMPLauncher
                         foreach (var movie in IntroMovieFilenames)
                         {
                             ConditionalTryRemoveFile(Path.Combine(rootDir, movie));
+                            if (File.Exists(Path.Combine(rootDir, movie)))
+                            {
+                                MessageBox.Show("Couldn't remove intro videos. You may need to run this application as an administrator.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                break;
+                            }
                         }
                     }
                     else
@@ -148,6 +154,11 @@ namespace AC4BFMPLauncher
                         foreach (var movie in IntroMovieFilenames)
                         {
                             ConditionalTryAddFile(Path.Combine(rootDir, movie));
+                            if (!File.Exists(Path.Combine(rootDir, movie)))
+                            {
+                                MessageBox.Show("Couldn't replace intro videos. You may have deleted them or you can try running this application as an administrator.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                break;
+                            }
                         }
                     }
                 }
@@ -170,6 +181,21 @@ namespace AC4BFMPLauncher
             }
             else
             {
+                var appidFile = Path.Combine(Path.GetDirectoryName(txtLocateAc4.Text), "steam_appid.txt");
+                if (!File.Exists(appidFile))
+                {
+                    try
+                    {
+                        File.WriteAllText(appidFile, "242050");
+                    }
+                    catch
+                    {
+                        MessageBox.Show(String.Format("Couldn't create steam_appid.txt file. You can either run this application as an administrator or"
+                                + " manually create {0} - it should contain only \"242050\" (without quotes) and nothing else.", appidFile),
+                            "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+
                 var dlg = new Done(txtLocateUplay.Text, txtLocateAc4.Text);
                 dlg.ShowDialog();
             }
