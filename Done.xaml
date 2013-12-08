@@ -1,0 +1,24 @@
+﻿<Window x:Class="AC4BFMPLauncher.Done"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Done!" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Grid HorizontalAlignment="Center" Margin="5,5,5,5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Width="350" TextWrapping="Wrap" TextAlignment="Center">All set! Go to your Steam client, open the Games menu, and click "Add a non-Steam game to my library."</TextBlock>
+        <TextBlock Width="350" TextWrapping="Wrap" TextAlignment="Center" Grid.Row="1" Margin="0,8,0,0" Name="lblBrowseTo">Browse to {0} and click "Add selected program".</TextBlock>
+        <TextBlock Width="350" TextWrapping="Wrap" TextAlignment="Center" Grid.Row="2" Margin="0,8,0,0">Now Right-click this program in the Games list, select Properties, change "Target" to:</TextBlock>
+        <TextBox MaxWidth="350"  Name="txtTarget" Grid.Row="3"/>
+        <TextBlock Width="350" TextWrapping="Wrap" TextAlignment="Center" Grid.Row="4" Margin="0,8,0,0">and set "Start In" to:</TextBlock>
+        <TextBox MaxWidth="350"  Name="txtStartIn" Grid.Row="5"/>
+        <TextBlock Width="350" TextWrapping="Wrap" TextAlignment="Center" Grid.Row="6" Margin="0,8,0,0">Customize the name/icon if you want, and you're done! You can close this program, but don't delete it since it launches multiplayer for you through Steam.</TextBlock>
+    </Grid>
+</Window>

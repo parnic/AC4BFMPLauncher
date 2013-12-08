@@ -1,0 +1,41 @@
+﻿<Window x:Class="AC4BFMPLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:clr="clr-namespace:System;assembly=mscorlib"
+        Title="AC4BF MP Launcher" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <clr:String x:Key="ubiLauncherTooltip">This is the path to Ubisoft's game launcher, which will be wherever you installed Uplay to.</clr:String>
+        <clr:String x:Key="ac4LocationTooltip">If installed through Steam, you'll navigate to your Steam directory (or library directory)\steamapps\common\Assassin's Creed IV Black Flag</clr:String>
+    </Window.Resources>
+
+    <Grid Margin="3,3,3,3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock ToolTip="{Binding Source={StaticResource ubiLauncherTooltip}}">Uplay location:</TextBlock>
+        <TextBox ToolTip="{Binding Source={StaticResource ubiLauncherTooltip}}" Grid.Column="1" Width="200" Name="txtLocateUplay" Margin="2,0,2,0"/>
+        <Button ToolTip="{Binding Source={StaticResource ubiLauncherTooltip}}" Grid.Column="2" Content="Browse..." Click="btnLocateUplay_Clicked"/>
+
+        <TextBlock ToolTip="{Binding Source={StaticResource ac4LocationTooltip}}" Grid.Row="1">AC4 location:</TextBlock>
+        <TextBox ToolTip="{Binding Source={StaticResource ac4LocationTooltip}}" Grid.Row="1" Grid.Column="1" Width="200" Name="txtLocateAc4" Margin="2,0,2,0"/>
+        <Button ToolTip="{Binding Source={StaticResource ac4LocationTooltip}}" Grid.Row="1" Grid.Column="2" Content="Browse..." Click="btnLocateAc4_Clicked"/>
+
+        <Button Grid.Row="2" Grid.ColumnSpan="99" Content="Remove intro videos" Name="btnToggleVideos" Click="btnToggleVideos_Clicked" IsEnabled="False"
+                ToolTip="Toggles whether intro videos are played when starting multiplayer or not. Set your AC4 location before using this."
+                ToolTipService.ShowOnDisabled="True"/>
+
+        <Button Grid.ColumnSpan="99" Grid.Row="3" Content="Done" Click="btnDone_Clicked" IsEnabled="False" Name="btnDone"
+                ToolTip="Browse to each path before clicking."
+                ToolTipService.ShowOnDisabled="True"/>
+    </Grid>
+</Window>
